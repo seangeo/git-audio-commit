@@ -13,7 +13,7 @@ ensure
   tempfile.unlink
 end
 
-IO.popen("git log") do |log|
+IO.popen("git log --color #{ARGV.join('')}") do |log|
   in_audio = false
   audio = nil
 
