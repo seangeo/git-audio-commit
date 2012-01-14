@@ -4,20 +4,20 @@ Adds two commands to git to support adding and reading audio files to commit mes
 
 ## Installation
 
-  gem install git-audio-commit
+    gem install git-audio-commit
 
 ## Adding audio to a commit
 
 Use `git audio-commit` instead of git commit. The audio file should be one
 that is supported by `afplay`, mp3, aiff and wav should work.
 
-  git audio-commit -m "<text message>" --audio <audio file>
+    git audio-commit -m "<text message>" --audio <audio file>
 
 ## Hearing the logs
 
 You can play back the logs using:
 
-  git say-log
+    git say-log
 
 This will support the same arguments as git log.
 
