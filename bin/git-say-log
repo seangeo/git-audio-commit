@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+
+require 'tempfile'
+require 'base64'
+
+def say_it(audio)
+  tempfile = Tempfile.new("git-say-log")
+  tempfile.write Base64.decode64(audio)
+  tempfile.close
+  system("afplay #{tempfile.path}")
+  sleep(1)
+ensure
+  tempfile.unlink
+end
+
+IO.popen("git log") do |log|
+  in_audio = false
+  audio = nil
+
+  log.each do |line|
+    case
+    when line =~ /--BEGIN-AUDIO--$/
+      in_audio = true
+      audio = ""
+    when line =~ /--END-AUDIO--$/
+      in_audio = false
+      audio << line
+      audio << "\n"
+      say_it(audio)
+    when in_audio
+      audio << line
+    else
+      puts line
+    end
+  end
+end

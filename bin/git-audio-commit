@@ -1,0 +1,40 @@
+#!/usr/bin/env ruby
+
+require 'tempfile'
+require 'base64'
+
+options = {}
+
+def capture(name)
+  val = nil
+  ARGV.each_with_index do |arg, index|
+    if arg == name
+      val = ARGV[index+1]
+      ARGV.delete_at(index+1)
+      ARGV.delete_at(index)
+    end
+  end
+  val
+end
+
+options[:audio] = capture("--audio")
+options[:message] = capture("-m")
+
+if options[:audio].nil? || options[:message].nil?
+  puts "Usage: git audio-commit --audio <audio-file> -m <message> ..."
+  exit(1)
+end
+
+tempfile = Tempfile.new("git-audio-commit")
+
+begin
+  tempfile << options[:message]
+  tempfile << "\n\n--BEGIN-AUDIO--\n"
+  tempfile << Base64.encode64(File.read(options[:audio]))
+  tempfile << "--END-AUDIO--\n"
+  tempfile.close
+
+  system("git commit -F #{tempfile.path} #{ARGV.join(" ")}")
+ensure
+  tempfile.unlink
+end
