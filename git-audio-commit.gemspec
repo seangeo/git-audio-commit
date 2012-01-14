@@ -15,16 +15,20 @@ Gem::Specification.new do |s|
   s.executables = ["git-audio-commit", "git-say-log"]
   s.extra_rdoc_files = [
     "LICENSE.txt",
-    "README.rdoc"
+    "README.md"
   ]
   s.files = [
     ".document",
     "Gemfile",
+    "Gemfile.lock",
     "LICENSE.txt",
-    "README.rdoc",
+    "README.md",
     "Rakefile",
     "VERSION",
-    "test/helper.rb"
+    "bin/git-audio-commit",
+    "bin/git-say-log",
+    "git-audio-commit.gemspec",
+    "hello-world.aiff"
   ]
   s.homepage = "http://github.com/seangeo/git-audio-commit"
   s.licenses = ["MIT"]
