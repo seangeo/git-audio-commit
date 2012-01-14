@@ -12,6 +12,8 @@ Use `git audio-commit` instead of git commit. The audio file should be one
 that is supported by `afplay`, mp3, aiff and wav should work.
 
     git audio-commit -m "<text message>" --audio <audio file>
+    
+All other arguments are passed through to `git commit`
 
 ## Hearing the logs
 
@@ -19,7 +21,7 @@ You can play back the logs using:
 
     git say-log
 
-This will support the same arguments as git log.
+All arguments are passed through to `git-log`.
 
 ## Requirements
 
