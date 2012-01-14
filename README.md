@@ -1,18 +1,31 @@
-= git-audio-commit
+# git-audio-commit
 
-Description goes here.
+Adds two commands to git to support adding and reading audio files to commit messages.
 
-== Contributing to git-audio-commit
- 
-* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
-* Fork the project
-* Start a feature/bugfix branch
-* Commit and push until you are happy with your contribution
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+## Installation
 
-== Copyright
+  gem install git-audio-commit
+
+## Adding audio to a commit
+
+Use `git audio-commit` instead of git commit. The audio file should be one
+that is supported by `afplay`, mp3, aiff and wav should work.
+
+  git audio-commit -m "<text message>" --audio <audio file>
+
+## Hearing the logs
+
+You can play back the logs using:
+
+  git say-log
+
+This will support the same arguments as git log.
+
+## Requirements
+
+Currently only works on Mac OSX since it uses the `afplay` command line utility.
+
+## Copyright
 
 Copyright (c) 2012 Sean Geoghegan. See LICENSE.txt for
 further details.
