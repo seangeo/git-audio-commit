@@ -8,7 +8,7 @@ def say_it(audio)
   tempfile.write Base64.decode64(audio)
   tempfile.close
   system("afplay #{tempfile.path}")
-  sleep(1)
+  sleep(0.5)
 ensure
   tempfile.unlink
 end
